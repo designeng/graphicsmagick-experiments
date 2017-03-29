@@ -13,6 +13,7 @@ import readFile from './plugins/readFile';
 
 import args from './decorators/args';
 
+import removeFileFromDatabase from './removeFileFromDatabase';
 import storeFileToDatabase from './storeFileToDatabase';
 
 let Promise = when.promise;
@@ -41,17 +42,17 @@ const spec = {
         }
     },
 
-    // @args(
-    //     {$ref: 'imagesDb'},
-    //     {$ref: 'filename'}
-    // )
-    // removeFileFromDatabase,
+    @args(
+        {$ref: 'imagesDb'},
+        {$ref: 'filename'}
+    )
+    removeFileFromDatabase,
 
     @args(
         {$ref: 'imagesDb'},
         {$ref: 'filename'},
         {$ref: 'imageFile'},
-        // {$ref: 'removeFileFromDatabase'}
+        {$ref: 'removeFileFromDatabase'}
     )
     storeFileToDatabase,
 }
