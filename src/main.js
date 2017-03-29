@@ -11,6 +11,8 @@ import Grid from 'gridfs-stream';
 import connectToDatabase from './plugins/connectToDatabase';
 import readFile from './plugins/readFile';
 
+import args from './decorators/args';
+
 let Promise = when.promise;
 
 const imagesDbUrl = 'mongodb://localhost:27017/images_storage';
@@ -28,11 +30,16 @@ const spec = {
         }
     },
 
-    jpgFile: {
+    imageFile: {
         readFile: {
             directory: __dirname + '/../images',
-            path: {$ref: 'one.jpg'}
+            path: 'one.jpg'
         }
+    },
+
+    @args({$ref: 'imageFile'})
+    storeImage: (imageFileData) => {
+
     },
 
     // download: {
@@ -46,9 +53,9 @@ const spec = {
 }
 
 wire(spec).then((context) => {
-    let { jpgFile } = context;
+    let { imageFile } = context;
     
-    console.log('IMAGE:::', jpgFile);
+    console.log('IMAGE:::', imageFile);
     when(context.destroy()).then(() => {
         process.exit();
     })
