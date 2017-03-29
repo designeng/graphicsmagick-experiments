@@ -13,6 +13,7 @@ const readFile = (resolver, compDef, wire) => {
             path = `/${path}`;
         }
         let filePath = directory + path;
+        console.log('filePath:::', filePath);
         if(!cache[filePath]) {
             fs.readFile(filePath, 'utf8', (error, content) => {
                 if (error) {

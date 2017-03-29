@@ -2,7 +2,7 @@
   "name": "GraphicsMagick",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.js",
   "dependencies": {
     "essential-wire": "git://github.com/designeng/essential-wire",
     "gridfs-stream": "^1.1.1",

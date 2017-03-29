@@ -1,2 +1,2 @@
 require('./starter');
-require('./src/index');
+require('./src/main');
