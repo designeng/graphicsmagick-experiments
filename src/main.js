@@ -41,15 +41,6 @@ const spec = {
     storeImage: (imageFileData) => {
 
     },
-
-    // download: {
-    //     create: {
-    //         module: download,
-    //         args: [
-    //             items
-    //         ]
-    //     }
-    // },
 }
 
 wire(spec).then((context) => {
