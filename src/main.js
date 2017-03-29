@@ -13,6 +13,8 @@ import readFile from './plugins/readFile';
 
 import args from './decorators/args';
 
+import storeFileToDatabase from './storeFileToDatabase';
+
 let Promise = when.promise;
 
 const imagesDbUrl = 'mongodb://localhost:27017/images_storage';
@@ -30,23 +32,33 @@ const spec = {
         }
     },
 
+    filename: 'one.jpg',
+
     imageFile: {
         readFile: {
             directory: __dirname + '/../images',
-            path: 'one.jpg'
+            path: {$ref: 'filename'}
         }
     },
 
-    @args({$ref: 'imageFile'})
-    storeImage: (imageFileData) => {
+    // @args(
+    //     {$ref: 'imagesDb'},
+    //     {$ref: 'filename'}
+    // )
+    // removeFileFromDatabase,
 
-    },
+    @args(
+        {$ref: 'imagesDb'},
+        {$ref: 'filename'},
+        {$ref: 'imageFile'},
+        // {$ref: 'removeFileFromDatabase'}
+    )
+    storeFileToDatabase,
 }
 
 wire(spec).then((context) => {
     let { imageFile } = context;
-    
-    console.log('IMAGE:::', imageFile);
+
     when(context.destroy()).then(() => {
         process.exit();
     })

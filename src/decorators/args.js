@@ -1,7 +1,7 @@
 import _ from 'underscore';
 
 export default function args(...config) {
-    return (target, name, description) => {
+    return (target, name, descriptor) => {
         return {
             value: {
                 create: {
