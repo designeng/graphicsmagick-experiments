@@ -8,8 +8,8 @@ export default function removeFileFromDatabase(database, name) {
     var gfs = Grid(database, mongodb);
 
     return Promise((resolve, reject) => {
-        gfs.remove(name, (res) => {
-            resolve(res);
-        })
+        gfs.remove({filename: name}, (err) => {
+            return err ? reject(err) : resolve();
+        });
     });
 }
